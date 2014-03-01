@@ -1,4 +1,5 @@
-\version "2.17.97"
+\version "2.19.0"
+#(ly:set-option 'strokeadjust #t)
 #(set-global-staff-size 15.5)
 
 ml = #(define-music-function (parser location off) (number?)
