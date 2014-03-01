@@ -1,3 +1,4 @@
+\version "2.17.97"
 \lyricmode {
   E -- ja, \ml #-0.3 Ma -- ter, fons a
   -- mo -- ris, fons a -- mo -- ris, me sen -- ti -- re vim do -- lo

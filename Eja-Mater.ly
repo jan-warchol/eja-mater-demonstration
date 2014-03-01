@@ -1,8 +1,8 @@
-\version "2.17.3"
+\version "2.17.97"
 #(set-global-staff-size 15.5)
 
 ml = #(define-music-function (parser location off) (number?)
-       #{ \once \override Lyrics.LyricText #'X-offset = #off #})
+       #{ \once \override Lyrics.LyricText.X-offset = #off #})
 
 \paper {
   systems-per-page = 4
@@ -96,24 +96,24 @@ ml = #(define-music-function (parser location off) (number?)
     indent = 0
     \dynamicUp
     \compressFullBarRests
-    \override DynamicTextSpanner #'style = #'none
-    \override TextScript #'direction = #UP
-    \override Staff.StaffSymbol #'thickness = #0.7
-    \override Stem #'thickness = #1.4
-    \override Slur #'thickness = #1.5
-    \override Tie #'line-thickness = #1
-    \override Hairpin #'thickness = #1.25
+    \override DynamicTextSpanner.style = #'none
+    \override TextScript.direction = #UP
+    \override Staff.StaffSymbol.thickness = #0.7
+    \override Stem.thickness = #1.4
+    \override Slur.thickness = #1.5
+    \override Tie.line-thickness = #1
+    \override Hairpin.thickness = #1.25
 
     \context {
       \Lyrics
-      \override LyricText #'font-size = #0.5
-      \override VerticalAxisGroup #'nonstaff-unrelatedstaff-spacing #'padding = #0.5
-      \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing #'padding = #0.35
+      \override LyricText.font-size = #0.5
+      \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing.padding = #0.5
+      \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #0.35
     }
     \context {
       \Score
-      \override BarNumber #'break-visibility = #'#(#f #t #t)
-      \override BarNumber #'self-alignment-X =
+      \override BarNumber.break-visibility = #'#(#f #t #t)
+      \override BarNumber.self-alignment-X =
       #(lambda (grob)
          (let ((break-dir (ly:item-break-dir grob)))
            (set! (ly:grob-property grob 'self-alignment-X)
@@ -121,7 +121,7 @@ ml = #(define-music-function (parser location off) (number?)
                      1
                      0))))
 
-      \override BarNumber #'stencil =
+      \override BarNumber.stencil =
       #(lambda (grob)
          (let ((break-dir (ly:item-break-dir grob)))
            (set! (ly:grob-property grob 'font-size)

@@ -1,3 +1,4 @@
+\version "2.17.97"
 \relative c' {
   \key c \minor
   \time 4/4
@@ -10,7 +11,7 @@
   r4 d8. \p d16 d4 d4 | % 13
   r4 d8. \cresc d16 d4 d4 | % 14
   r4 f8. \f \< f16 f4 f4 \! | % 15
-  \shape Slur #'((0 . -0.5)(0 . -0.75)(0 . -0.75)(0 . -0.5))
+  \shape #'((0 . -0.5)(0 . -0.75)(0 . -0.75)(0 . -0.5)) Slur
   << f2. ( { s2 s4\dim } >> es8 ) des8 | % 16
   c4 c2. \> ~ ^> | % 17
   c2. \! \p b4 | % 18
@@ -24,9 +25,9 @@
   r4 c8. \p g16 c4 c4 | % 29
   r4 bes2 \< bes4 \! |
   << es4 { s8 s\>} >> es,4 \! r2 | % 31
-  r2 es'2 -\tweak #'X-offset #-4 \mf -^ | % 32
+  r2 es'2 -\tweak X-offset #-4 \mf -^ | % 32
   r2 es2 \cresc -^ | % 33
-  r2 g2 -\tweak #'X-offset #-4 \ff ~ -^ | % 34
+  r2 g2 -\tweak X-offset #-4 \ff ~ -^ | % 34
   g2. r8 g,8 \p | % 35
   g4. g8 g4. g8 | % 36
   g4 r4 r2 | % 37
@@ -51,7 +52,7 @@
   c4. \p \< c8 c4 c4 \! | % 58
   f2. ~ f8 f8 | % 59
   f2 \< r2 \! |
-  g2 -\tweak #'X-offset #-2 \f -^ r2 | % 61
+  g2 -\tweak X-offset #-2 \f -^ r2 | % 61
   g2 -^ r2 | % 62
   g2. ~ g8 g,8 \dim | % 63
   g4 g4 g4. g8 | % 64
@@ -96,7 +97,7 @@
   es4 r4 b'4.\pp b8 | % 107
   g4 r4 <<
     {
-      \voiceOne g4 -\tweak #'X-offset #-3 \pp ( b8 ) b8 | % 108
+      \voiceOne g4 -\tweak X-offset #-3 \pp ( b8 ) b8 | % 108
       c4
     }
     \new Voice {
