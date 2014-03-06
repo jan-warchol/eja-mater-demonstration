@@ -1,4 +1,4 @@
-\version "2.19.0"
+\version "2.17.10"
 #(ly:set-option 'strokeadjust #t)
 #(set-global-staff-size 15.5)
 

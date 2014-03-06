@@ -4,8 +4,8 @@
   \time 4/4
   \tempo "Andante con moto" 4=69
   R1*7 | % 8
-  r4 g8.\p as16 g4 g4 | % 9
-  r4 g8. as16 g4 g4 |
+  r4 g'8.\p as16 g4 g4 | % 9
+  r4 g,8. as16 g4 g4 |
   r4 g8. \< as16 g4 ( as4 \! ) | % 11
   as4 \mf r4 r2 | % 12
   r4 c8.\p d16 c4 c4 | % 13
