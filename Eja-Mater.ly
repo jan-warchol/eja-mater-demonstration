@@ -97,12 +97,6 @@ Layout = \layout {
     \override VerticalAxisGroup.remove-empty = ##f
     \override VerticalAxisGroup.remove-first = ##f
   }
-  \context {
-    \Voice
-    \applyContext #(lambda (x)
-        (if (member (ly:context-id x ) (list "TenorVoice"))
-          (ly:context-pushpop-property x 'NoteHead 'color red )))
-  }
 }
 
 SopranoMusic = \include "sopranoMusic.ily"
