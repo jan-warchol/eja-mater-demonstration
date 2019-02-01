@@ -53,6 +53,80 @@ ml = #(define-music-function (parser location off) (number?)
   }
 }
 
+Layout = \layout {
+  indent = 0
+  \dynamicUp
+  \compressFullBarRests
+  \override DynamicTextSpanner.style = #'none
+  \override TextScript.direction = #UP
+  \override Staff.StaffSymbol.thickness = #0.7
+  \override Stem.thickness = #1.4
+  \override Slur.thickness = #1.5
+  \override Tie.line-thickness = #1
+  \override Hairpin.thickness = #1.25
+
+  \context {
+    \Lyrics
+    \override LyricText.font-size = #0.5
+    \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing.padding = #0.5
+    \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #0.35
+  }
+  \context {
+    \Score
+    \override BarNumber.break-visibility = #'#(#f #t #t)
+    \override BarNumber.self-alignment-X =
+    #(lambda (grob)
+      (let ((break-dir (ly:item-break-dir grob)))
+        (if (= break-dir RIGHT)
+          1
+          0)))
+
+    \override BarNumber.stencil =
+    #(lambda (grob)
+        (let ((break-dir (ly:item-break-dir grob)))
+          (set! (ly:grob-property grob 'font-size)
+                (if (= break-dir RIGHT)
+                    -1
+                    -3))
+          (ly:text-interface::print grob)))
+  }
+  \context {
+    \Staff
+    \consists "Ambitus_engraver"
+    \autoBeamOff
+    \override VerticalAxisGroup.remove-empty = ##f
+    \override VerticalAxisGroup.remove-first = ##f
+  }
+  \context {
+    \Voice
+    \applyContext #(lambda (x)
+        (if (member (ly:context-id x ) (list "TenorVoice"))
+          (ly:context-pushpop-property x 'NoteHead 'color red )))
+  }
+}
+
+SopranoMusic = \include "sopranoMusic.ily"
+SopranoLyrics = \include "sopranoWords.ily"
+AltoMusic = \include "altoMusic.ily"
+AltoLyrics = \include "altoWords.ily"
+TenorMusic = \include "tenorMusic.ily"
+TenorLyrics = \include "tenorWords.ily"
+BassMusic = \include "bassMusic.ily"
+BassLyrics = \include "bassWords.ily"
+
+SopranoInstrumentName = "S "
+SopranoShortInstrumentName = "S "
+AltoInstrumentName = "A "
+AltoShortInstrumentName = "A "
+TenorInstrumentName = "T "
+TenorShortInstrumentName = "T "
+BassInstrumentName = "B "
+BassShortInstrumentName = "B "
+
+
+\include "satb.ly"
+
+%{
 \score {
   \new ChoirStaff
   <<
@@ -93,42 +167,6 @@ ml = #(define-music-function (parser location off) (number?)
     \addlyrics { \include "bassWords.ily" }
   >>
 
-  \layout {
-    indent = 0
-    \dynamicUp
-    \compressFullBarRests
-    \override DynamicTextSpanner.style = #'none
-    \override TextScript.direction = #UP
-    \override Staff.StaffSymbol.thickness = #0.7
-    \override Stem.thickness = #1.4
-    \override Slur.thickness = #1.5
-    \override Tie.line-thickness = #1
-    \override Hairpin.thickness = #1.25
-
-    \context {
-      \Lyrics
-      \override LyricText.font-size = #0.5
-      \override VerticalAxisGroup.nonstaff-unrelatedstaff-spacing.padding = #0.5
-      \override VerticalAxisGroup.nonstaff-relatedstaff-spacing.padding = #0.35
-    }
-    \context {
-      \Score
-      \override BarNumber.break-visibility = #'#(#f #t #t)
-      \override BarNumber.self-alignment-X =
-      #(lambda (grob)
-        (let ((break-dir (ly:item-break-dir grob)))
-          (if (= break-dir RIGHT)
-            1
-            0)))
-
-      \override BarNumber.stencil =
-      #(lambda (grob)
-         (let ((break-dir (ly:item-break-dir grob)))
-           (set! (ly:grob-property grob 'font-size)
-                 (if (= break-dir RIGHT)
-                     -1
-                     -3))
-           (ly:text-interface::print grob)))
-    }
-  }
 }
+
+%}
