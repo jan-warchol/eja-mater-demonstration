@@ -12,9 +12,9 @@ ml = #(define-music-function (parser location off) (number?)
   top-margin = 6 \mm
   left-margin = 16 \mm
   right-margin = 15 \mm
-  last-bottom-spacing #'basic-distance = 8
-  top-system-spacing #'basic-distance = 10
-  markup-system-spacing #'basic-distance = 10
+  last-bottom-spacing.basic-distance = 8
+  top-system-spacing.basic-distance = 10
+  markup-system-spacing.basic-distance = 10
 
   oddFooterMarkup = \markup {
     \fill-line {
@@ -63,7 +63,7 @@ ml = #(define-music-function (parser location off) (number?)
       \autoBeamOff
       \include "sopranoMusic.ily"
     }
-    \addlyrics \include "sopranoWords.ily"
+    \addlyrics { \include "sopranoWords.ily" }
 
     \new Staff = alty \with { \consists "Ambitus_engraver" } {
       \clef treble
@@ -72,7 +72,7 @@ ml = #(define-music-function (parser location off) (number?)
       \autoBeamOff
       \include "altoMusic.ily"
     }
-    \addlyrics \include "altoWords.ily"
+    \addlyrics { \include "altoWords.ily" }
 
     \new Staff = tenory \with { \consists "Ambitus_engraver" } {
       \clef "treble_8"
@@ -81,7 +81,7 @@ ml = #(define-music-function (parser location off) (number?)
       \autoBeamOff
       \include "tenorMusic.ily"
     }
-    \addlyrics \include "tenorWords.ily"
+    \addlyrics { \include "tenorWords.ily" }
 
     \new Staff = basy \with { \consists "Ambitus_engraver" } {
       \clef bass
@@ -90,7 +90,7 @@ ml = #(define-music-function (parser location off) (number?)
       \autoBeamOff
       \include "bassMusic.ily"
     }
-    \addlyrics \include "bassWords.ily"
+    \addlyrics { \include "bassWords.ily" }
   >>
 
   \layout {
@@ -116,11 +116,10 @@ ml = #(define-music-function (parser location off) (number?)
       \override BarNumber.break-visibility = #'#(#f #t #t)
       \override BarNumber.self-alignment-X =
       #(lambda (grob)
-         (let ((break-dir (ly:item-break-dir grob)))
-           (set! (ly:grob-property grob 'self-alignment-X)
-                 (if (= break-dir RIGHT)
-                     1
-                     0))))
+        (let ((break-dir (ly:item-break-dir grob)))
+          (if (= break-dir RIGHT)
+            1
+            0)))
 
       \override BarNumber.stencil =
       #(lambda (grob)
